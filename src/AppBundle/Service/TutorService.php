@@ -1,27 +1,25 @@
 <?php
 /**
- * AppBundle
+ * TutorService
  *
  * PHP version 7
  *
- * @category   AppBundle
- * @package    AppBundle
+ * @category   TutorService
+ * @package    AppBundle\Service
  * @author     Andrew Detwiler <adetwiler@adidamnetworks.com>
  * @copyright  2016 Andrew Detwiler
  */
 
-namespace AppBundle;
-
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+namespace AppBundle\Service;
 
 /**
- * AppBundle
+ * TutorService
  *
- * @category   AppBundle
- * @package    AppBundle
+ * @category   TutorService
+ * @package    AppBundle\Service
  * @author     Andrew Detwiler <adetwiler@adidamnetworks.com>
  * @copyright  2016 Andrew Detwiler
  */
-class AppBundle extends Bundle
+class TutorService extends EntityService
 {
 }

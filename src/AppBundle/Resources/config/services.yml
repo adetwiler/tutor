@@ -1,0 +1,10 @@
+services:
+    app.service.entity:
+        class: AppBundle\Service\EntityService
+        abstract:  true
+        arguments:
+            - "@doctrine.orm.entity_manager"
+
+    app.service.tutor:
+        class: AppBundle\Service\TutorService
+        parent: "app.service.entity"

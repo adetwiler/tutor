@@ -1,10 +1,27 @@
 <?php
+/**
+ * Tutor
+ *
+ * PHP version 7
+ *
+ * @category   Tutor
+ * @package    AppBundle\Entity
+ * @author     Andrew Detwiler <adetwiler@adidamnetworks.com>
+ * @copyright  2016 Andrew Detwiler
+ */
 
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Tutor
+ *
+ * @category   Tutor
+ * @package    AppBundle\Entity
+ * @author     Andrew Detwiler <adetwiler@adidamnetworks.com>
+ * @copyright  2016 Andrew Detwiler
+ *
  * @ORM\Entity
  * @ORM\Table(name="tutor")
  */

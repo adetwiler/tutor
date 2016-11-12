@@ -6,14 +6,8 @@
 
     {% form_theme form 'bootstrap_3_layout.html.twig' %}
     {{ form_start(form) }}
-        {{ form_row(form.q) }}
+        {{ form_row(form.q, { 'attr': {'placeholder': 'Search For Tutors...'} }) }}
 
         <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> Search</button>
     {{ form_end(form) }}
-
-    <form class="form-inline">
-        <div class="form-group">
-            <input type="text" class="form-control" id="search" name="q" placeholder="Search For Tutor..." />
-        </div>
-    </form>
 {% endblock %}
