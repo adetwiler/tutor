@@ -2,7 +2,7 @@
 /**
  * Configuration
  *
- * PHP version 7
+ * PHP version 5
  *
  * @category   Configuration
  * @package    AppBundle\DependencyInjection

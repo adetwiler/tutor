@@ -2,7 +2,7 @@
 /**
  * Tutor
  *
- * PHP version 7
+ * PHP version 5
  *
  * @category   Tutor
  * @package    AppBundle\Entity

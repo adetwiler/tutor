@@ -2,7 +2,7 @@
 /**
  * AppExtension
  *
- * PHP version 7
+ * PHP version 5
  *
  * @category   AppExtension
  * @package    AppBundle\DependencyInjection
