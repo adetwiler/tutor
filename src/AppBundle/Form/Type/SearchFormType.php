@@ -2,7 +2,7 @@
 /**
  * SearchFormType
  *
- * PHP version 5
+ * PHP version 7
  *
  * @category   SearchFormType
  * @package    AppBundle\Form\Type

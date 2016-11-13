@@ -2,7 +2,7 @@
 /**
  * EntityService
  *
- * PHP version 5
+ * PHP version 7
  *
  * @category   EntityService
  * @package    AppBundle\Service
