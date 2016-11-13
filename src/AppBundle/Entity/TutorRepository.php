@@ -31,7 +31,7 @@ class TutorRepository extends EntityRepository
      */
     public function searchTutor($criteria)
     {
-        $queryBuilder = $this->createQueryBuilder('tutor')
+        return $this->createQueryBuilder('tutor')
             ->leftJoin('AppBundle\\Entity\\TutorSubjects', 'tutor_subjects', Join::WITH, 'tutor.id = tutor_subjects.tutorId')
             ->leftJoin('AppBundle\\Entity\\Subject', 'subject', Join::WITH, 'subject.id = tutor_subjects.subjectId')
             ->where('tutor.fullName LIKE :criteria')
@@ -39,8 +39,8 @@ class TutorRepository extends EntityRepository
             ->orWhere('subject.subjectName LIKE :criteria')
             ->setParameter('criteria', '%' . $criteria . '%')
             ->addGroupBy('tutor.id')
+            ->getQuery()
+            ->getResult()
         ;
-
-        return $queryBuilder->getQuery()->getResult();
     }
 }
