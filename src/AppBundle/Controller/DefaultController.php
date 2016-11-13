@@ -37,13 +37,18 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $tutors = [];
-        $searchForm = $this->createForm(SearchFormType::class);
-        $tutorService = $this->container->get('app.service.tutor');
+        $searchForm = $this->createForm(SearchFormType::class, null, array(
+            'method' => 'GET'
+        ));
 
         $searchForm->handleRequest($request);
         
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
-            echo"<pre>";var_dump($tutorService);exit;
+            $tutors = $this->container->get('app.service.tutor')
+                ->findTutorsByCriteria(
+                    $request->query->get($searchForm->getName())['q']
+                )
+            ;
         }
         
         return $this->render('default/index.html.twig', [

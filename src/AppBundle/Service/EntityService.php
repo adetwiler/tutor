@@ -27,7 +27,7 @@ class EntityService
     /**
      * @var EntityManager
      */
-    private $entityManager;
+    protected $entityManager;
 
     /**
      * TutorService constructor.

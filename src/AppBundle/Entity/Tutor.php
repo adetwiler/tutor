@@ -12,6 +12,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,8 +23,14 @@ use Doctrine\ORM\Mapping as ORM;
  * @author     Andrew Detwiler <adetwiler@adidamnetworks.com>
  * @copyright  2016 Andrew Detwiler
  *
- * @ORM\Entity
- * @ORM\Table(name="tutor")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\TutorRepository")
+ * @ORM\Table(
+ *    name="tutor",
+ *    indexes={
+ *        @ORM\Index(name="fullName_idx", columns={"full_name"}),
+ *        @ORM\Index(name="zipCode_idx", columns={"zip_code"})
+ *    }
+ * )
  */
 class Tutor
 {
@@ -37,12 +44,7 @@ class Tutor
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $firstName;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $lastName;
+    private $fullName;
 
     /**
      * @ORM\Column(type="integer")
@@ -50,12 +52,24 @@ class Tutor
     private $zipCode;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Subject", inversedBy="tutors")
+     * @ORM\JoinTable(name="tutor_subjects",
+     *      joinColumns={@ORM\JoinColumn(name="tutor_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="subject_id", referencedColumnName="id")}
+     * )
      */
     private $subjects;
 
     /**
-     * @return mixed
+     * Tutor constructor.
+     */
+    public function __construct()
+    {
+        $this->subjects = new ArrayCollection();
+    }
+
+    /**
+     * @return integer
      */
     public function getId()
     {
@@ -63,39 +77,26 @@ class Tutor
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getFirstName()
+    public function getFullName()
     {
-        return $this->firstName;
+        return $this->fullName;
     }
 
     /**
-     * @param mixed $firstName
+     * @param string $fullName
+     * @return $this
      */
-    public function setFirstName($firstName)
+    public function setFullName($fullName)
     {
-        $this->firstName = $firstName;
+        $this->fullName = $fullName;
+
+        return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param mixed $lastName
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-    }
-
-    /**
-     * @return mixed
+     * @return integer
      */
     public function getZipCode()
     {
@@ -103,10 +104,41 @@ class Tutor
     }
 
     /**
-     * @param mixed $zipCode
+     * @param $zipCode
+     * @return $this
      */
     public function setZipCode($zipCode)
     {
         $this->zipCode = $zipCode;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSubjects()
+    {
+        $subjects = [];
+        if ($this->subjects) {
+            foreach ($this->subjects as $subject) {
+                $subjects[] = $subject->getSubjectName();
+            }
+
+            $subjects = implode(', ', $subjects);
+        }
+
+        return $subjects;
+    }
+
+    /**
+     * @param Subject $subject
+     * @return $this
+     */
+    public function addSubject(Subject $subject)
+    {
+        $this->subjects[] = $subject;
+
+        return $this;
     }
 }

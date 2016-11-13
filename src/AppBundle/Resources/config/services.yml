@@ -8,3 +8,5 @@ services:
     app.service.tutor:
         class: AppBundle\Service\TutorService
         parent: "app.service.entity"
+        arguments:
+            - "@request_stack"

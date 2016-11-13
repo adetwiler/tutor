@@ -1,0 +1,21 @@
+{% if results %}
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tutor</th>
+                <th>Subjects</th>
+                <th>Zip Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tutor in results %}
+                <tr>
+                    <td>{{ tutor.fullName }}</td>
+                    <td>{{ tutor.subjects }}</td>
+                    <td>{{ tutor.zipCode }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

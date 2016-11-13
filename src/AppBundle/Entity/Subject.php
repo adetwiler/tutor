@@ -23,7 +23,12 @@ use Doctrine\ORM\Mapping as ORM;
  * @copyright  2016 Andrew Detwiler
  *
  * @ORM\Entity
- * @ORM\Table(name="subject")
+ * @ORM\Table(
+ *    name="subject",
+ *    indexes={
+ *        @ORM\Index(name="subjectName_idx", columns={"subject_name"})
+ *    }
+ * )
  */
 class Subject
 {
@@ -40,7 +45,16 @@ class Subject
     private $subjectName;
 
     /**
-     * @return mixed
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tutor", mappedBy="subjects")
+     * @ORM\JoinTable(name="tutor_subjects",
+     *      joinColumns={@ORM\JoinColumn(name="subject_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tutor_id", referencedColumnName="id")}
+     * )
+     */
+    private $tutors;
+
+    /**
+     * @return integer
      */
     public function getId()
     {
@@ -48,7 +62,7 @@ class Subject
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSubjectName()
     {
@@ -56,10 +70,21 @@ class Subject
     }
 
     /**
-     * @param mixed $subjectName
+     * @param string $subjectName
+     * @return $this
      */
     public function setSubjectName($subjectName)
     {
         $this->subjectName = $subjectName;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTutors()
+    {
+        return $this->tutors;
     }
 }

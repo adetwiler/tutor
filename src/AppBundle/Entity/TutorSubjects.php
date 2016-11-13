@@ -45,7 +45,7 @@ class TutorSubjects
     private $subjectId;
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getId()
     {
@@ -53,7 +53,7 @@ class TutorSubjects
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getTutorId()
     {
@@ -61,15 +61,18 @@ class TutorSubjects
     }
 
     /**
-     * @param mixed $tutorId
+     * @param integer $tutorId
+     * @return $this
      */
     public function setTutorId($tutorId)
     {
         $this->tutorId = $tutorId;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getSubjectId()
     {
@@ -77,10 +80,13 @@ class TutorSubjects
     }
 
     /**
-     * @param mixed $subjectId
+     * @param integer $subjectId
+     * @return $this
      */
     public function setSubjectId($subjectId)
     {
         $this->subjectId = $subjectId;
+
+        return $this;
     }
 }
